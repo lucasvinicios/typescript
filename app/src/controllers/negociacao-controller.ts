@@ -10,7 +10,7 @@ import { NegociacoesView } from '../views/negociacoes-view.js';
 export class NegociacaoController {
     @domInjector('#data')
     private inputData: HTMLInputElement;
-    @domInjector('#quantidade') 
+    @domInjector('#quantidade')
     private inputQuantidade: HTMLInputElement;
     @domInjector('#valor')
     private inputValor: HTMLInputElement;
@@ -27,15 +27,15 @@ export class NegociacaoController {
     public adiciona(): void {
 
         const negociacao = Negociacao.criaDe(
-            this.inputData.value, 
+            this.inputData.value,
             this.inputQuantidade.value,
             this.inputValor.value
         );
-     
+
         if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
                 .update('Apenas negociações em dias úteis são aceitas');
-            return ;
+            return;
         }
 
         this.negociacoes.adiciona(negociacao);
@@ -44,7 +44,7 @@ export class NegociacaoController {
     }
 
     private ehDiaUtil(data: Date) {
-        return data.getDay() > DiasDaSemana.DOMINGO 
+        return data.getDay() > DiasDaSemana.DOMINGO
             && data.getDay() < DiasDaSemana.SABADO;
     }
 
